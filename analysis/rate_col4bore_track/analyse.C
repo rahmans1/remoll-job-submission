@@ -37,6 +37,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   ctype.push_back("col4bore");
   ctype.push_back("col4all");
   
+  std::vector<TString> plottype;
+  ctype.push_back("xy");
+  ctype.push_back("r");
+  ctype.push_back("e");
+  
   std::map<TString, std::tuple<Int_t,Double_t,Double_t>> bins{ 
                                  {"MD_nocut_xy", std::make_tuple{1500, }, \
                                  {"MD_col4bore_xy", std::make_tuple{1500, }}, \
@@ -120,18 +125,24 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6BExit_col4bore_e", std::make_tuple{1500, }}, \
                                  {"Col6BExit_col4all_e", std::make_tuple{1500, }} };
                                   
-  std::map<TString, TH2D*> h_xy;
-  std::map<TString, TH1D*> h_r;
-  std::map<TString, TH1D*> h_e;
-
+  std::map<TString, TH1*> h;
+  TString cut;
+  TString part;
+    
   for(Int_t i=0; i<ptype.size(); i++){
-   for(Int_t j=0; j<ctype.size(); j++){
-   part= Form("%s_%s", detector.Data(), ctype.data());
-   h_xy[part+"_xy"+"_"+ptype]=new TH2D(part+"_xy"+"_"+ptype, Form("%s_xy_%s rate-weighted distro, Generator=%s", part.Data(), ptype.Data(), gen.Data()), \
-                                       get<0>bins[part+"_xy"],get<1>bins[part+"_xy"],get<2>bins[part+"_xy"],get<0>bins[part+"_xy"],get<1>bins[part+"_xy"],get<2>bins[part+"_xy"]);
-   h_r[part+"_r"+"_"+ptype]=new TH1D(part+"_r"+"_"+ptype, Form("%s_r_%s rate-weighted distro, Generator=%s", ptype.Data(), gen.Data()), get<0>bins[part+"_r"],get<1>bins[part+"_r"],get<2>bins[part+"_r"]);
-   h_e[part+"_e"+"_"+ptype]=new TH1D(part+"_e"+"_"+ptype, Form("%s_e_%s rate-weighted distro, Generator=%s", ptype.Data(), gen.Data()), get<0>bins[part+"_e"],get<1>bins[part+"_e"],get<2>bins[part+"_e"]);
-   }  
+    for(Int_t j=0; j<ctype.size(); j++){
+      for(Int_t j=0; k<plottype.size(); k++){ 
+        cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
+        part = Form("%s_%s", cut.Data(), ptype[i].Data());
+        if(plottype[k].Sizeof()-1==2){
+          h[part]=new TH2D(part, Form("%s rate-weighted distro, Generator=%s", part.Data(), gen.Data()), \
+                           get<0>bins[cut],get<1>bins[cut],get<2>bins[cut],get<0>bins[cut],get<1>bins[cut],get<2>bins[cut]);
+        }else{
+          h[part]=new TH1D(part, Form("%s rate-weighted distro, Generator=%s", part.Data(), gen.Data()), \
+                           get<0>bins[cut],get<1>bins[cut],get<2>bins[cut]);
+        }
+      }
+    }  
   }
 
   
