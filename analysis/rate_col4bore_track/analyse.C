@@ -199,11 +199,19 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
         }
       }
     }  
-  }
+  } 
+    
+  Double_t fRate=0;
+  remollEvent_t *fEvent=0;
+  std::vector<remollGenericDetectorHit_t> *fHit=0;
+  std::vector<remollEventParticle_t> *fPart=0;
 
+  T.SetBranchAddress("ev", &fEvent);
+  T.SetBranchAddress("hit", &fHit);
+  T.SetBranchAddress("rate", &fRate);
+  T.SetBranchAddress("part", &fPart);
   
-  
-  
+    
   std::map<TString, Int_t> detector_cut{ {"MD", hit.det==28}, \
                                          {"Col4Ent", hit.det==44}, \
                                          {"Col4Exit", hit.det==45}, \
