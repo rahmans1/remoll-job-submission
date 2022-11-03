@@ -211,6 +211,17 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   T.SetBranchAddress("rate", &fRate);
   T.SetBranchAddress("part", &fPart);
   
+  for (size_t j=0; j< nEvents; j++){
+    T.GetEntry(j);
+    std::vector<int> MD_trid;
+    std::vector<int>::iterator MD_it;
+    std::vector<int> R5_trid;
+    std::vector<int>::iterator R5_it;
+    std::vector<int> col4bore_trid;
+    std::vector<int>::iterator col4bore_it;
+    std::vector<int> col4all_trid;
+    std::vector<int>::iterator col4all_it;
+
     
   std::map<TString, Int_t> detector_cut{ {"MD", hit.det==28}, \
                                          {"Col4Ent", hit.det==44}, \
