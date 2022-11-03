@@ -34,8 +34,10 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   
   std::vector<TString> ctype;
   ctype.push_back("nocut");
-  ctype.push_back("col4bore");
-  ctype.push_back("col4all");
+  ctype.push_back("col4bore_MD");
+  ctype.push_back("col4all_MD");
+  ctype.push_back("col4bore_R5");
+  ctype.push_back("col4all_R5");
   
   std::vector<TString> plottype;
   ctype.push_back("xy");
@@ -43,15 +45,21 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   ctype.push_back("e");
   
   std::map<TString, std::tuple<Int_t,Double_t,Double_t>> bins{ 
-                                 {"MD_nocut_xy", std::make_tuple{1500, }, \
-                                 {"MD_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"MD_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"MD_nocut_r", std::make_tuple{1500, }}, \
-                                 {"MD_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"MD_col4all_r", std::make_tuple{1500, }}, \
-                                 {"MD_nocut_e", std::make_tuple{1500, }}, \
-                                 {"MD_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"MD_col4all_e", std::make_tuple{1500, }}, \
+                                 {"MD_nocut_xy", std::make_tuple{1500, -1500, 1500}, \
+                                 {"MD_col4bore_MD_xy", std::make_tuple{1500, -1500, 1500}}, \
+                                 {"MD_col4all_MD_xy", std::make_tuple{1500, -1500, 1500}}, \
+                                 {"MD_col4bore_R5_xy", std::make_tuple{1500, -1500, 1500}}, \
+                                 {"MD_col4all_R5_xy", std::make_tuple{1500, -1500, 1500}}, \
+                                 {"MD_nocut_r", std::make_tuple{800, 500, 1300}}, \
+                                 {"MD_col4bore_MD_r", std::make_tuple{800, 500, 1300}}, \
+                                 {"MD_col4all_MD_r", std::make_tuple{800, 500, 1300}}, \
+                                 {"MD_col4bore_R5_r", std::make_tuple{800, 500, 1300}}, \
+                                 {"MD_col4all_R5_r", std::make_tuple{800, 500, 1300}}, \
+                                 {"MD_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"MD_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"MD_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"MD_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"MD_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
                                  {"Col4Ent_nocut_xy", std::make_tuple{1500, }}, \
                                  {"Col4Ent_col4bore_xy", std::make_tuple{1500, }}, \
                                  {"Col4Ent_col4all_xy", std::make_tuple{1500, }}, \
