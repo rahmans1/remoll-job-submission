@@ -19,8 +19,8 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
 {
   TChain T("T");
   T.Add(Form("%s", source.Data())); // Adding source file
-  Int_t nEvents= T.GetEntries();  // Number of primary events
-  Double_t weight= 1.0/85; // Divide by current. So, the Y-axis gets units of Hz/uA
+  Int_t nEvents= T.GetEntries();    // Number of primary events
+  Double_t weight= 1.0/85;          // Divide by current. So, the Y-axis gets units of Hz/uA
   
   TFile* f = new TFile(Form("%s", out.Data()), writeState);
   TDirectory* subdir = f->mkdir(detid);
@@ -60,78 +60,126 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"MD_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
                                  {"MD_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
                                  {"MD_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
-                                 {"Col4Ent_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col4Ent_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col4Exit_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col6AEnt_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col6AMid_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col6AExit_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col6BEnt_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col6BMid_col4all_e", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_nocut_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_col4bore_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_col4all_xy", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_nocut_r", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_col4bore_r", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_col4all_r", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_nocut_e", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_col4bore_e", std::make_tuple{1500, }}, \
-                                 {"Col6BExit_col4all_e", std::make_tuple{1500, }} };
+                                 {"Col4Ent_nocut_xy", std::make_tuple{100, -500, 500}}, \
+                                 {"Col4Ent_col4bore_MD_xy", std::make_tuple{100, -100, 100}}, \
+                                 {"Col4Ent_col4all_MD_xy", std::make_tuple{100, -500, 500}}, \
+                                 {"Col4Ent_col4bore_R5_xy", std::make_tuple{100, -100, 100}}, \
+                                 {"Col4Ent_col4all_R5_xy", std::make_tuple{100, -500, 500}}, \
+                                 {"Col4Ent_nocut_r", std::make_tuple{100, 0, 500}}, \
+                                 {"Col4Ent_col4bore_MD_r", std::make_tuple{100, 0, 100}}, \
+                                 {"Col4Ent_col4all_MD_r", std::make_tuple{100, 0, 500}}, \
+                                 {"Col4Ent_col4bore_R5_r", std::make_tuple{100, 0, 100}}, \
+                                 {"Col4Ent_col4all_R5_r", std::make_tuple{100, 0, 500}}, \
+                                 {"Col4Ent_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Ent_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Ent_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Ent_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Ent_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Exit_nocut_xy", std::make_tuple{100, -500, 500}}, \
+                                 {"Col4Exit_col4bore_MD_xy", std::make_tuple{100, -100, 100}}, \
+                                 {"Col4Exit_col4all_MD_xy", std::make_tuple{100, -500, 500}}, \
+                                 {"Col4Exit_col4bore_R5_xy", std::make_tuple{100, -100, 100}}, \
+                                 {"Col4Exit_col4all_R5_xy", std::make_tuple{100, -500, 500}}, \
+                                 {"Col4Exit_nocut_r", std::make_tuple{100, 0, 500}}, \
+                                 {"Col4Exit_col4bore_MD_r", std::make_tuple{100, 0, 100}}, \
+                                 {"Col4Exit_col4all_MD_r", std::make_tuple{100, 0, 500}}, \
+                                 {"Col4Exit_col4bore_R5_r", std::make_tuple{100, 0, 100}}, \
+                                 {"Col4Exit_col4all_R5_r", std::make_tuple{100, 0, 500}}, \
+                                 {"Col4Exit_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Exit_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Exit_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Exit_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col4Exit_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AEnt_nocut_xy", std::make_tuple{200, -1000, 1000}}, \
+                                 {"Col6AEnt_col4bore_MD_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6AEnt_col4all_MD_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6AEnt_col4bore_R5_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6AEnt_col4all_R5_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6AEnt_nocut_r", std::make_tuple{1500, 0, 1500}}, \
+                                 {"Col6AEnt_col4bore_MD_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6AEnt_col4all_MD_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6AEnt_col4bore_R5_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6AEnt_col4all_R5_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6AEnt_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AEnt_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AEnt_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AEnt_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AEnt_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AMid_nocut_xy", std::make_tuple{200, -1000, 1000}}, \
+                                 {"Col6AMid_col4bore_MD_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6AMid_col4all_MD_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6AMid_col4bore_R5_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6AMid_col4all_R5_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6AMid_nocut_r", std::make_tuple{1500, 0, 1500}}, \
+                                 {"Col6AMid_col4bore_MD_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6AMid_col4all_MD_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6AMid_col4bore_R5_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6AMid_col4all_R5_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6AMid_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AMid_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AMid_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AMid_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AMid_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AExit_nocut_xy", std::make_tuple{200, -1000, 1000}}, \
+                                 {"Col6AExit_col4bore_MD_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6AExit_col4all_MD_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6AExit_col4bore_R5_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6AExit_col4all_R5_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6AExit_nocut_r", std::make_tuple{1500, 0, 1500}}, \
+                                 {"Col6AExit_col4bore_MD_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6AExit_col4all_MD_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6AExit_col4bore_R5_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6AExit_col4all_R5_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6AExit_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AExit_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AExit_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AExit_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6AExit_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BEnt_nocut_xy", std::make_tuple{200, -1000, 1000}}, \
+                                 {"Col6BEnt_col4bore_MD_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6BEnt_col4all_MD_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6BEnt_col4bore_R5_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6BEnt_col4all_R5_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6BEnt_nocut_r", std::make_tuple{1500, 0, 1500}}, \
+                                 {"Col6BEnt_col4bore_MD_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6BEnt_col4all_MD_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6BEnt_col4bore_R5_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6BEnt_col4all_R5_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6BEnt_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BEnt_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BEnt_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BEnt_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BEnt_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BMid_nocut_xy", std::make_tuple{200, -1000, 1000}}, \
+                                 {"Col6BMid_col4bore_MD_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6BMid_col4all_MD_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6BMid_col4bore_R5_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6BMid_col4all_R5_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6BMid_nocut_r", std::make_tuple{1500, 0, 1500}}, \
+                                 {"Col6BMid_col4bore_MD_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6BMid_col4all_MD_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6BMid_col4bore_R5_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6BMid_col4all_R5_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6BMid_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BMid_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BMid_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BMid_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BMid_col4all_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BExit_nocut_xy", std::make_tuple{200, -1000, 1000}}, \
+                                 {"Col6BExit_col4bore_MD_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6BExit_col4all_MD_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6BExit_col4bore_R5_xy", std::make_tuple{200, -200, 200}}, \
+                                 {"Col6BExit_col4all_R5_xy", std::make_tuple{120, -600, 600}}, \
+                                 {"Col6BExit_nocut_r", std::make_tuple{1500, 0, 1500}}, \
+                                 {"Col6BExit_col4bore_MD_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6BExit_col4all_MD_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6BExit_col4bore_R5_r", std::make_tuple{200, 0, 200}}, \
+                                 {"Col6BExit_col4all_R5_r", std::make_tuple{600, 0, 600}}, \
+                                 {"Col6BExit_nocut_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BExit_col4bore_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BExit_col4all_MD_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BExit_col4bore_R5_e", std::make_tuple{1200, 0, 12000}}, \
+                                 {"Col6BExit_col4all_R5_e", std::make_tuple{1200, 0, 12000}} };
                                   
   std::map<TString, TH1*> h;
   TString cut;
