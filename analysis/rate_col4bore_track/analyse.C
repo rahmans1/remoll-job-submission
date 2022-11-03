@@ -1,8 +1,21 @@
 ### Track particles from target region coming through collimator 4 bore and hitting main detector 
+#include <iostream>
+#include <map>
+#include <tuple>
+#include <vector>
+
+using std::map;
+using std::vector;
+using std::string;
+using std::tuple;
+using std::make_tuple;
+using std::cout;
+using std::endl;
+
 
 void isValid(std::vector<remollGenericDetectorHit_t> *fHit, std::vector<int> &det28trid, std::vector<int> &Ring5trid, std::vector<int> &Boretrid, std::vector<int> &Acceptancetrid);
 
-int analyse(TString source, TString out, TString gen, TString detid, TString writeState)
+int analyse(TString source, TString out, TString gen, TString detector, TString writeState)
 {
   TChain T("T");
   T.Add(Form("%s", source.Data())); // Adding source file
@@ -22,50 +35,102 @@ int analyse(TString source, TString out, TString gen, TString detid, TString wri
   std::vector<TString> ctype;
   ctype.push_back("nocut");
   ctype.push_back("col4bore");
-  ctype.push_back("col4boreandacceptance");
+  ctype.push_back("col4all");
   
-  std::map<TString, Int_t> nbin{ {"MD_nocut", 1500}, \
-                                 {"MD_nocut", 1500}, \
-                                 {"Col4Ent", 100}, \
-                                 {"Col4Exit", 100}, \
-                                 {"Col6AEnt", 140}, \
-                                 {"Col6AMid", 140}, \
-                                 {"Col6AExit", 140}, \
-                                 {"Col6BEnt", 140}, \
-                                 {"Col6BMid", 140}, \
-                                 {"Col6BExit", 140} };
-  std::map<TString, Double_t> min{ {"MD", -1500}, \
-                                       {"Col4Ent", -500}, \
-                                       {"Col4Exit", -500}, \
-                                       {"Col6AEnt", -700}, \
-                                       {"Col6AMid", -700}, \
-                                       {"Col6AExit", -700}, \
-                                       {"Col6BEnt", -700}, \
-                                       {"Col6BMid", -700}, \
-                                       {"Col6BExit", -700} };
-  std::map<TString, Double_t> max{ {"MD", 1500}, \
-                                       {"Col4Ent", 500}, \
-                                       {"Col4Exit", 500}, \
-                                       {"Col6AEnt", 700}, \
-                                       {"Col6AMid", 700}, \
-                                       {"Col6AExit", 700}, \
-                                       {"Col6BEnt", 700}, \
-                                       {"Col6BMid", 700}, \
-                                       {"Col6BExit", 700} };
-  
- 
-  
-  
+  std::map<TString, std::tuple<Int_t,Double_t,Double_t>> bins{ 
+                                 {"MD_nocut_xy", std::make_tuple{1500, }, \
+                                 {"MD_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"MD_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"MD_nocut_r", std::make_tuple{1500, }}, \
+                                 {"MD_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"MD_col4all_r", std::make_tuple{1500, }}, \
+                                 {"MD_nocut_e", std::make_tuple{1500, }}, \
+                                 {"MD_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"MD_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col4Ent_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col4Exit_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col6AEnt_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col6AMid_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col6AExit_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col6BEnt_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col6BMid_col4all_e", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_nocut_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_col4bore_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_col4all_xy", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_nocut_r", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_col4bore_r", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_col4all_r", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_nocut_e", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_col4bore_e", std::make_tuple{1500, }}, \
+                                 {"Col6BExit_col4all_e", std::make_tuple{1500, }} };
+                                  
   std::map<TString, TH2D*> h_xy;
   std::map<TString, TH1D*> h_r;
   std::map<TString, TH1D*> h_e;
 
   for(Int_t i=0; i<ptype.size(); i++){
    for(Int_t j=0; j<ctype.size(); j++){
-   part= Form("%s_%s_%s", detector.Data(), ptype.Data(), ctype.data());
-   h_xy[part]=new TH1D(part+"_xy", Form("%s_xy rate-weighted distro, Generator=%s", part.Data(), gen.Data()), , -500, 500, 100, -500, 500);
-   h_r[part]=new TH2D(part+"_r", Form("%s_r rate-weighted distro, Generator=%s", part.Data(), gen.Data()), 300, 0, 1500);
-   h_e[part]=new TH2D(part+"_e", Form("%s_prpz rate-weighted distribution, Generator=%s", part.Data(), gen.Data()), 100, 0, 11000);
+   part= Form("%s_%s", detector.Data(), ctype.data());
+   h_xy[part+"_xy"+"_"+ptype]=new TH2D(part+"_xy"+"_"+ptype, Form("%s_xy_%s rate-weighted distro, Generator=%s", part.Data(), ptype.Data(), gen.Data()), \
+                                       get<0>bins[part+"_xy"],get<1>bins[part+"_xy"],get<2>bins[part+"_xy"],get<0>bins[part+"_xy"],get<1>bins[part+"_xy"],get<2>bins[part+"_xy"]);
+   h_r[part+"_r"+"_"+ptype]=new TH1D(part+"_r"+"_"+ptype, Form("%s_r_%s rate-weighted distro, Generator=%s", ptype.Data(), gen.Data()), get<0>bins[part+"_r"],get<1>bins[part+"_r"],get<2>bins[part+"_r"]);
+   h_e[part+"_e"+"_"+ptype]=new TH1D(part+"_e"+"_"+ptype, Form("%s_e_%s rate-weighted distro, Generator=%s", ptype.Data(), gen.Data()), get<0>bins[part+"_e"],get<1>bins[part+"_e"],get<2>bins[part+"_e"]);
    }  
   }
 
