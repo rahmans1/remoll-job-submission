@@ -213,29 +213,44 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   
   for (size_t j=0; j< nEvents; j++){
     T.GetEntry(j);
-    std::vector<int> MD_trid;
-    std::vector<int>::iterator MD_it;
-    std::vector<int> R5_trid;
-    std::vector<int>::iterator R5_it;
-    std::vector<int> col4bore_trid;
-    std::vector<int>::iterator col4bore_it;
-    std::vector<int> col4all_trid;
-    std::vector<int>::iterator col4all_it;
-
+    if(gen=="beam") fRate=1;
     
-  std::map<TString, Int_t> detector_cut{ {"MD", hit.det==28}, \
-                                         {"Col4Ent", hit.det==44}, \
-                                         {"Col4Exit", hit.det==45}, \
-                                         {"Col6AEnt", hit.det==66}, \
-                                         {"Col6AMid", hit.det==68}, \
-                                         {"Col6AExit", hit.det==69}, \
-                                         {"Col6BEnt", hit.det==72}, \
-                                         {"Col6BMid", hit.det==73}, \
-                                         {"Col6BExit", hit.det==74} };
+    vector<int> MD_trid;
+    vector<int>::iterator MD_it;
+    vector<int> R5_trid;
+    vector<int>::iterator R5_it;
+    vector<int> col4bore_trid;
+    vector<int>::iterator col4bore_it;
+    vector<int> col4all_trid;
+    vector<int>::iterator col4all_it;
+    
+    isValid(fHit,det28trid,Ring5trid,Boretrid,Acceptancetrid);
+    
+    for(size_t i=0;i<fHit->size();i++){
+      MD_it = find(MD_trid.begin(),MD_trid.end(),trid);
+      R5_it = find(R5_trid.begin(),R5_trid.end(),trid);
+      col4bore_it = find(col4bore_trid.begin(),col4bore_trid.end(),trid);
+      col4all_it = find(col4all_trid.begin(),col4all_trid.end(),trid);
+
+      std::map<TString, Int_t> detector_cut{ {"MD", hit.det==28}, \
+                                             {"Col4Ent", hit.det==44}, \
+                                             {"Col4Exit", hit.det==45}, \
+                                             {"Col6AEnt", hit.det==66}, \
+                                             {"Col6AMid", hit.det==68}, \
+                                             {"Col6AExit", hit.det==69}, \
+                                             {"Col6BEnt", hit.det==72}, \
+                                             {"Col6BMid", hit.det==73}, \
+                                             {"Col6BExit", hit.det==74} };
+     
+      Int_t pid = hit.pid;
+      Int_t trid = hit.trid;
+      
+    }
+  }
   return 0; 
 }
 
-void isValid(std::vector<remollGenericDetectorHit_t> *fHit, std::vector<int> &det28trid, std::vector<int> &Ring5trid, std::vector<int> &Boretrid,  std::vector<int> &Acceptancetrid)
+void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &det28trid, vector<int> &Ring5trid, vector<int> &Boretrid, vector<int> &Acceptancetrid)
 {
   for(size_t i=0;i<fHit->size();i++){
     remollGenericDetectorHit_t hit=fHit->at(i);
