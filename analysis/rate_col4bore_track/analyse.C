@@ -190,7 +190,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
       for(Int_t j=0; k<plottype.size(); k++){ 
         cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
         part = Form("%s_%s", cut.Data(), ptype[i].Data());
-        if(plottype[k].Sizeof()-1==2){
+        if(plottype[k]=="xy"){
           h[part]=new TH2D(part, Form("%s rate-weighted distro, Generator=%s", part.Data(), gen.Data()), \
                            get<0>bins[cut],get<1>bins[cut],get<2>bins[cut],get<0>bins[cut],get<1>bins[cut],get<2>bins[cut]);
         }else{
