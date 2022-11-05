@@ -224,26 +224,42 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
     vector<int> col4all_trid;
     vector<int>::iterator col4all_it;
     
-    isValid(fHit,det28trid,Ring5trid,Boretrid,Acceptancetrid);
-    
+    isValid(fHit,MD_trid,R5_trid,col4bore_trid,col4all_trid);
+        
     for(size_t i=0;i<fHit->size();i++){
+      Int_t trid = hit.trid;
       MD_it = find(MD_trid.begin(),MD_trid.end(),trid);
       R5_it = find(R5_trid.begin(),R5_trid.end(),trid);
       col4bore_it = find(col4bore_trid.begin(),col4bore_trid.end(),trid);
       col4all_it = find(col4all_trid.begin(),col4all_trid.end(),trid);
 
-      std::map<TString, Int_t> detector_cut{ {"MD", hit.det==28}, \
-                                             {"Col4Ent", hit.det==44}, \
-                                             {"Col4Exit", hit.det==45}, \
-                                             {"Col6AEnt", hit.det==66}, \
-                                             {"Col6AMid", hit.det==68}, \
-                                             {"Col6AExit", hit.det==69}, \
-                                             {"Col6BEnt", hit.det==72}, \
-                                             {"Col6BMid", hit.det==73}, \
-                                             {"Col6BExit", hit.det==74} };
+      map<TString, Bool_t> detector_cut{ {"MD", hit.det==28}, \
+                                         {"Col4Ent", hit.det==44}, \
+                                         {"Col4Exit", hit.det==45}, \
+                                         {"Col6AEnt", hit.det==66}, \
+                                         {"Col6AMid", hit.det==68}, \
+                                         {"Col6AExit", hit.det==69}, \
+                                         {"Col6BEnt", hit.det==72}, \
+                                         {"Col6BMid", hit.det==73}, \
+                                         {"Col6BExit", hit.det==74} };
      
-      Int_t pid = hit.pid;
-      Int_t trid = hit.trid;
+      map<TString, Bool_t> ptype_cut{ {"all", 1}, \
+                                      {"electron", hit.pid==11}, \
+                                      {"positron", hit.pid==-11}, \
+                                      {"photon", hit.pid==22}, \
+                                      {"neutron", hit.pid==22} };
+      
+      map<TString, Bool_t> ctype_cut{ {"nocut", 1}, \
+                                      {"col4bore_MD", MD_it!=MD_trid.end() && col4bore_it!=col4bore_trid.end() && trid==*MD_it && trid==*col4bore_it}, \
+                                      {"col4all_MD", MD_it!=MD_trid.end() && col4all_it!=col4all_trid.end() && trid==*MD_it && trid==*col4all_it}, \
+                                      {"col4bore_R5", R5_it!=R5_trid.end() && col4bore_it!=col4bore_trid.end() && trid==*R5_it && trid==*col4bore_it}, \
+                                      {"col4all_R5", R5_it!=R5_trid.end() && col4all_it!=col4all_trid.end() && trid==*R5_it && trid==*col4all_it} };                                 
+      
+      
+      if(MD_it==MD_trid.end() || coll4all_it==coll4all_trid.end()) {continue;}
+      
+      
+
       
     }
   }
