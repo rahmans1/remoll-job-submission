@@ -13,7 +13,7 @@ using std::cout;
 using std::endl;
 
 
-void isValid(std::vector<remollGenericDetectorHit_t> *fHit, std::vector<int> &det28trid, std::vector<int> &Ring5trid, std::vector<int> &Boretrid, std::vector<int> &Acceptancetrid);
+void isValid(std::vector<remollGenericDetectorHit_t> *fHit, std::vector<int> MD_trid, std::vector<int> R5_trid, std::vector<int> col4bore_trid, std::vector<int> &col4all_trid);
 
 int analyse(TString source, TString out, TString gen, TString detector, TString writeState)
 {
@@ -263,7 +263,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
           for(Int_t k=0; k<plottype.size(); k++){ 
             cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
             part = Form("%s_%s", cut.Data(), ptype[i].Data());
-            if(plottype[k]=="xy" && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[){
+            if(plottype[k]=="xy" && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875){
               h[part]->Fill(hit.x, hit.y, fRate*weight);
             }else if(plottype[k]=="r"){
               h[part]->Fill(hit.r, fRate*weight);
@@ -290,22 +290,22 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   return 0; 
 }
 
-void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &det28trid, vector<int> &Ring5trid, vector<int> &Boretrid, vector<int> &Acceptancetrid)
+void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &MD_trid, vector<int> &R5_trid, vector<int> &col4bore_trid, vector<int> &col4all_trid)
 {
   for(size_t i=0;i<fHit->size();i++){
     remollGenericDetectorHit_t hit=fHit->at(i);
     int det = hit.det;
     int pid = hit.pid;
     if(det==28 && hit.r>=650 && hit.r<=1160 && hit.vz<=-3875){
-        det28trid.push_back(hit.trid);
+        MD_trid.push_back(hit.trid);
     }
     if(det==28 && hit.r>=920 && hit.r<=1060 && hit.vz<=-3875){
-        Ring5trid.push_back(hit.trid);
+        R5_trid.push_back(hit.trid);
     }
     if(det==44 && hit.r<=40 && hit.vz<=-3875){
-        Boretrid.push_back(hit.trid);
+        col4bore_trid.push_back(hit.trid);
     }
     if(det==44 && hit.r<=210 && hit.vz<=-3875){
-        Acceptancetrid.push_back(hit.trid);
+        col4all_trid.push_back(hit.trid);
     }
 }
