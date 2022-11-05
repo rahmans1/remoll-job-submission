@@ -109,6 +109,17 @@ elif ("sampipe_backsplash" in args.home):
   jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"ring6\\\", \\\"UPDATE\\\")\"\n")
   jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"PMT\\\", \\\"UPDATE\\\")\"\n")
   jsubf.write("mv analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root "+out+"\n")	
+elif ("rate_col4bore_track" in args.home):
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"MD\\\", \\\"RECREATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col4Ent\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col4Exit\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col6AEnt\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col6AMid\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col6AExit\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col6BEnt\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col6BMid\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", \\\"Col6BExit\\\", \\\"UPDATE\\\")\"\n")
+  jsubf.write("mv analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root "+out+"\n")	
 else:
   jsubf.write("./reroot -q -b analyse.C\"(\\\"${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\",\\\"analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root\\\", \\\""+args.gen+"\\\", 900, 1060, 900, 1060, 900, 1060)\"\n")
   jsubf.write("mv analysed_${FILE[${SLURM_ARRAY_TASK_ID}-1]}.root "+out+"\n")
