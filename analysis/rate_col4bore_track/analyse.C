@@ -187,7 +187,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
     
   for(Int_t i=0; i<ptype.size(); i++){
     for(Int_t j=0; j<ctype.size(); j++){
-      for(Int_t j=0; k<plottype.size(); k++){ 
+      for(Int_t k=0; k<plottype.size(); k++){ 
         cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
         part = Form("%s_%s", cut.Data(), ptype[i].Data());
         if(plottype[k]=="xy"){
@@ -247,7 +247,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                       {"electron", hit.pid==11}, \
                                       {"positron", hit.pid==-11}, \
                                       {"photon", hit.pid==22}, \
-                                      {"neutron", hit.pid==22} };
+                                      {"neutron", hit.pid==2112} };
       
       map<TString, Bool_t> ctype_cut{ {"nocut", 1}, \
                                       {"col4bore_MD", MD_it!=MD_trid.end() && col4bore_it!=col4bore_trid.end() && trid==*MD_it && trid==*col4bore_it}, \
@@ -258,11 +258,35 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
       
       if(MD_it==MD_trid.end() || coll4all_it==coll4all_trid.end()) {continue;}
       
-      
-
-      
+      for(Int_t i=0; i<ptype.size(); i++){
+        for(Int_t j=0; j<ctype.size(); j++){
+          for(Int_t k=0; k<plottype.size(); k++){ 
+            cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
+            part = Form("%s_%s", cut.Data(), ptype[i].Data());
+            if(plottype[k]=="xy" && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[){
+              h[part]->Fill(hit.x, hit.y, fRate*weight);
+            }else if(plottype[k]=="r"){
+              h[part]->Fill(hit.r, fRate*weight);
+            }else if(plottype[k]=="e"){
+              h[part]->Fill(hit.e, fRate*weight);  
+            }
+          }
+        }  
+      }     
+ 
     }
   }
+                                                                                                     
+  for(Int_t i=0; i<ptype.size(); i++){
+    for(Int_t j=0; j<ctype.size(); j++){
+      for(Int_t j=0; k<plottype.size(); k++){ 
+        cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
+        part = Form("%s_%s", cut.Data(), ptype[i].Data());
+        h[part]->SetDirectory(subdir);
+      }
+    }  
+  }
+  f->Write();                                                                                                   
   return 0; 
 }
 
