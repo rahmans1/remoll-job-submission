@@ -44,7 +44,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   ctype.push_back("r");
   ctype.push_back("e");
   
-  map<TString, tuple<Int_t,Double_t,Double_t>> bins{ 
+  map<TString, tuple<Int_t,Double_t,Double_t>> bins{ \
                                  {"MD_nocut_xy", make_tuple{1500, -1500, 1500}}, \
                                  {"MD_col4bore_MD_xy", make_tuple{1500, -1500, 1500}}, \
                                  {"MD_col4all_MD_xy", make_tuple{1500, -1500, 1500}}, \
