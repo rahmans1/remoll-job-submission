@@ -81,8 +81,8 @@ int analyse(TString source, TString out, TString gen, TString radpos, TString ov
 
   Double_t fRate=0;
   remollEvent_t *fEvent=0;
-  std::vector<remollGenericDetectorHit_t>  *fHit=0;
-  std::vector<remollEventParticle_t> *fPart=0;
+  vector<remollGenericDetectorHit_t>  *fHit=0;
+  vector<remollEventParticle_t> *fPart=0;
 
   T.SetBranchAddress("ev", &fEvent);
   T.SetBranchAddress("hit", &fHit);
