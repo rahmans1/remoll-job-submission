@@ -227,6 +227,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
     isValid(fHit,MD_trid,R5_trid,col4bore_trid,col4all_trid);
         
     for(size_t i=0;i<fHit->size();i++){
+      remollGenericDetectorHit_t hit=fHit->at(i);
       Int_t trid = hit.trid;
       MD_it = find(MD_trid.begin(),MD_trid.end(),trid);
       R5_it = find(R5_trid.begin(),R5_trid.end(),trid);
