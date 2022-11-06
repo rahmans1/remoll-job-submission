@@ -188,14 +188,14 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   for(Int_t i=0; i<ptype.size(); i++){
     for(Int_t j=0; j<ctype.size(); j++){
       for(Int_t k=0; k<plottype.size(); k++){ 
-        cut= Form("%s_%s_%s", detector.Data(), ctype[j].data(), plottype[k].Data());
+        cut= Form("%s_%s_%s", detector.Data(), ctype[j].Data(), plottype[k].Data());
         part = Form("%s_%s", cut.Data(), ptype[i].Data());
         if(plottype[k]=="xy"){
           h[part]=new TH2D(part, Form("%s rate-weighted distro, Generator=%s", part.Data(), gen.Data()), \
-                           get<0>bins[cut],get<1>bins[cut],get<2>bins[cut],get<0>bins[cut],get<1>bins[cut],get<2>bins[cut]);
+                           get<0>(bins[cut]),get<1>(bins[cut]),get<2>(bins[cut]),get<0>(bins[cut]),get<1>(bins[cut]),get<2>(bins[cut]));
         }else{
           h[part]=new TH1D(part, Form("%s rate-weighted distro, Generator=%s", part.Data(), gen.Data()), \
-                           get<0>bins[cut],get<1>bins[cut],get<2>bins[cut]);
+                           get<0>(bins[cut]),get<1>(bins[cut]),get<2>(bins[cut]));
         }
       }
     }  
