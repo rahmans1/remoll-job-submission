@@ -23,7 +23,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   Double_t weight= 1.0/85;          // Divide by current. So, the Y-axis gets units of Hz/uA
   
   TFile* f = new TFile(Form("%s", out.Data()), writeState);
-  TDirectory* subdir = f->mkdir(detid);
+  TDirectory* subdir = f->mkdir(detector);
   
   vector<TString> ptype;
   ptype.push_back("all");
@@ -45,7 +45,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   ctype.push_back("e");
   
   map<TString, tuple<Int_t,Double_t,Double_t>> bins{ 
-                                 {"MD_nocut_xy", make_tuple{1500, -1500, 1500}, \
+                                 {"MD_nocut_xy", make_tuple{1500, -1500, 1500}}, \
                                  {"MD_col4bore_MD_xy", make_tuple{1500, -1500, 1500}}, \
                                  {"MD_col4all_MD_xy", make_tuple{1500, -1500, 1500}}, \
                                  {"MD_col4bore_R5_xy", make_tuple{1500, -1500, 1500}}, \
