@@ -1,4 +1,4 @@
-### Track particles from target region coming through collimator 4 bore and hitting main detector 
+// Track particles from target region coming through collimator 4 bore and hitting main detector 
 #include <iostream>
 #include <map>
 #include <tuple>
