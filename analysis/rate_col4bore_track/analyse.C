@@ -309,4 +309,5 @@ void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &MD_trid, vec
     if(det==44 && hit.r<=210 && hit.vz<=-3875){
         col4all_trid.push_back(hit.trid);
     }
+  }
 }
