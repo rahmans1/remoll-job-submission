@@ -13,7 +13,7 @@ using std::cout;
 using std::endl;
 
 
-void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> MD_trid, vector<int> R5_trid, vector<int> col4bore_trid, vector<int> &col4all_trid);
+void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &MD_trid, vector<int> &R5_trid, vector<int> &col4bore_trid, vector<int> &col4all_trid);
 
 int analyse(TString source, TString out, TString gen, TString detector, TString writeState)
 {
