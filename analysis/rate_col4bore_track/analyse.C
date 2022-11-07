@@ -43,6 +43,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   plottype.push_back("xy");
   plottype.push_back("r");
   plottype.push_back("e");
+  plottype.push_back("th");
   
   map<TString, tuple<Int_t,Double_t,Double_t>> bins{ \
                                  {"MD_nocut_xy", make_tuple(1500, -1500, 1500)}, \
@@ -60,6 +61,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"MD_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"MD_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"MD_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"MD_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"MD_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"MD_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"MD_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"MD_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col4Ent_nocut_xy", make_tuple(100, -500, 500)}, \
                                  {"Col4Ent_col4bore_MD_xy", make_tuple(100, -100, 100)}, \
                                  {"Col4Ent_col4all_MD_xy", make_tuple(100, -500, 500)}, \
@@ -75,6 +81,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col4Ent_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col4Ent_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col4Ent_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col4Ent_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Ent_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Ent_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Ent_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Ent_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col4Exit_nocut_xy", make_tuple(100, -500, 500)}, \
                                  {"Col4Exit_col4bore_MD_xy", make_tuple(100, -100, 100)}, \
                                  {"Col4Exit_col4all_MD_xy", make_tuple(100, -500, 500)}, \
@@ -90,6 +101,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col4Exit_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col4Exit_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col4Exit_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col4Exit_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Exit_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Exit_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Exit_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col4Exit_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col6AEnt_nocut_xy", make_tuple(200, -1000, 1000)}, \
                                  {"Col6AEnt_col4bore_MD_xy", make_tuple(200, -200, 200)}, \
                                  {"Col6AEnt_col4all_MD_xy", make_tuple(120, -600, 600)}, \
@@ -105,6 +121,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6AEnt_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6AEnt_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6AEnt_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col6AEnt_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AEnt_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AEnt_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AEnt_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AEnt_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col6AMid_nocut_xy", make_tuple(200, -1000, 1000)}, \
                                  {"Col6AMid_col4bore_MD_xy", make_tuple(200, -200, 200)}, \
                                  {"Col6AMid_col4all_MD_xy", make_tuple(120, -600, 600)}, \
@@ -120,6 +141,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6AMid_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6AMid_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6AMid_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col6AMid_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AMid_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AMid_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AMid_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AMid_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col6AExit_nocut_xy", make_tuple(200, -1000, 1000)}, \
                                  {"Col6AExit_col4bore_MD_xy", make_tuple(200, -200, 200)}, \
                                  {"Col6AExit_col4all_MD_xy", make_tuple(120, -600, 600)}, \
@@ -135,6 +161,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6AExit_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6AExit_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6AExit_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col6AExit_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AExit_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AExit_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AExit_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6AExit_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col6BEnt_nocut_xy", make_tuple(200, -1000, 1000)}, \
                                  {"Col6BEnt_col4bore_MD_xy", make_tuple(200, -200, 200)}, \
                                  {"Col6BEnt_col4all_MD_xy", make_tuple(120, -600, 600)}, \
@@ -150,6 +181,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6BEnt_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6BEnt_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6BEnt_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col6BEnt_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BEnt_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BEnt_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BEnt_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BEnt_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col6BMid_nocut_xy", make_tuple(200, -1000, 1000)}, \
                                  {"Col6BMid_col4bore_MD_xy", make_tuple(200, -200, 200)}, \
                                  {"Col6BMid_col4all_MD_xy", make_tuple(120, -600, 600)}, \
@@ -165,6 +201,11 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6BMid_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6BMid_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6BMid_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col6BMid_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BMid_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BMid_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BMid_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BMid_col4all_R5_th", make_tuple(140, 0, 7)}, \
                                  {"Col6BExit_nocut_xy", make_tuple(200, -1000, 1000)}, \
                                  {"Col6BExit_col4bore_MD_xy", make_tuple(200, -200, 200)}, \
                                  {"Col6BExit_col4all_MD_xy", make_tuple(120, -600, 600)}, \
@@ -179,7 +220,12 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                  {"Col6BExit_col4bore_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6BExit_col4all_MD_e", make_tuple(1200, 0, 12000)}, \
                                  {"Col6BExit_col4bore_R5_e", make_tuple(1200, 0, 12000)}, \
-                                 {"Col6BExit_col4all_R5_e", make_tuple(1200, 0, 12000)} };
+                                 {"Col6BExit_col4all_R5_e", make_tuple(1200, 0, 12000)}, \
+                                 {"Col6BExit_nocut_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BExit_col4bore_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BExit_col4all_MD_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BExit_col4bore_R5_th", make_tuple(140, 0, 7)}, \
+                                 {"Col6BExit_col4all_R5_th", make_tuple(140, 0, 7)} };
                                   
   map<TString, TH1*> h;
   TString cut;
@@ -270,6 +316,8 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
               h[part]->Fill(hit.r, fRate*weight);
             }else if(plottype[k]=="e"  && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875){
               h[part]->Fill(hit.e, fRate*weight);  
+            }else if(plottype[k]=="th"  && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875 && hit.pz>=0){
+              h[part]->Fill((180./pi)*atan2(sqrt(hit.px*hit.px+hit.py*hit.py),hit.pz), fRate*weight);  
             }
           }
         }  
