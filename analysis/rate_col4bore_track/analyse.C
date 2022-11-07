@@ -265,10 +265,10 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
             cut= Form("%s_%s_%s", detector.Data(), ctype[j].Data(), plottype[k].Data());
             part = Form("%s_%s", cut.Data(), ptype[i].Data());
             if(plottype[k]=="xy" && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875){
-              h[part]->Fill(hit.x, hit.y, fRate*weight);
-            }else if(plottype[k]=="r"){
+              ((TH2D*) h[part])->Fill(hit.x, hit.y, fRate*weight);
+            }else if(plottype[k]=="r"  && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875){
               h[part]->Fill(hit.r, fRate*weight);
-            }else if(plottype[k]=="e"){
+            }else if(plottype[k]=="e"  && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875){
               h[part]->Fill(hit.e, fRate*weight);  
             }
           }
