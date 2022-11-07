@@ -11,6 +11,7 @@ using std::tuple;
 using std::make_tuple;
 using std::cout;
 using std::endl;
+using TMath::Pi;
 
 
 void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &MD_trid, vector<int> &R5_trid, vector<int> &col4bore_trid, vector<int> &col4all_trid);
@@ -317,7 +318,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
             }else if(plottype[k]=="e"  && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875){
               h[part]->Fill(hit.e, fRate*weight);  
             }else if(plottype[k]=="th"  && detector_cut[detector] && ptype_cut[ptype[i]] && ctype_cut[ctype[j]] && hit.vz<=-3875 && hit.pz>=0){
-              h[part]->Fill((180./pi)*atan2(sqrt(hit.px*hit.px+hit.py*hit.py),hit.pz), fRate*weight);  
+              h[part]->Fill((180./Pi)*atan2(sqrt(hit.px*hit.px+hit.py*hit.py),hit.pz), fRate*weight);  
             }
           }
         }  
