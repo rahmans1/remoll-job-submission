@@ -40,9 +40,9 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
   ctype.push_back("col4all_R5");
   
   vector<TString> plottype;
-  ctype.push_back("xy");
-  ctype.push_back("r");
-  ctype.push_back("e");
+  plottype.push_back("xy");
+  plottype.push_back("r");
+  plottype.push_back("e");
   
   map<TString, tuple<Int_t,Double_t,Double_t>> bins{ \
                                  {"MD_nocut_xy", make_tuple(1500, -1500, 1500)}, \
