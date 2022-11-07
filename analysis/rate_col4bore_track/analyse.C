@@ -257,7 +257,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                       {"col4all_R5", R5_it!=R5_trid.end() && col4all_it!=col4all_trid.end() && trid==*R5_it && trid==*col4all_it} };                                 
       
       
-      if(MD_it==MD_trid.end() || coll4all_it==coll4all_trid.end()) {continue;}
+      if(MD_it==MD_trid.end() || col4all_it==col4all_trid.end()) {continue;}
       
       for(Int_t i=0; i<ptype.size(); i++){
         for(Int_t j=0; j<ctype.size(); j++){
