@@ -280,7 +280,7 @@ int analyse(TString source, TString out, TString gen, TString detector, TString 
                                                                                                      
   for(Int_t i=0; i<ptype.size(); i++){
     for(Int_t j=0; j<ctype.size(); j++){
-      for(Int_t j=0; k<plottype.size(); k++){ 
+      for(Int_t k=0; k<plottype.size(); k++){ 
         cut= Form("%s_%s_%s", detector.Data(), ctype[j].Data(), plottype[k].Data());
         part = Form("%s_%s", cut.Data(), ptype[i].Data());
         h[part]->SetDirectory(subdir);
