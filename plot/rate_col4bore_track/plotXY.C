@@ -16,7 +16,7 @@ int plotXY(TString filename, TString particle, TString cut){
   TCanvas *c=new TCanvas("c", "c", 1200, 1000);
   c->Divide(3,3);
   for (int i =0 ; i< det.size(); i++){
-    c->cd(i); 
+    c->cd(i+1); 
     gPad->SetMargin(0.13,0.13,0.13,0.13);
     TH2D* h = (TH2D*) ((TDirectory*) f->Get(det[i]))->Get(det[i]+"_"+cut+"_xy_"+particle);
     h->Draw("colz");
