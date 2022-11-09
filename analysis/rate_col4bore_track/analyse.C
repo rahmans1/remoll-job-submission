@@ -346,10 +346,10 @@ void isValid(vector<remollGenericDetectorHit_t> *fHit, vector<int> &MD_trid, vec
     remollGenericDetectorHit_t hit=fHit->at(i);
     int det = hit.det;
     int pid = hit.pid;
-    if(det==28 && hit.r>=650 && hit.r<=1160 && hit.vz<=-3875){
+    if(det==28 && hit.r>=660 && hit.r<=1170 && hit.vz<=-3875){
         MD_trid.push_back(hit.trid);
     }
-    if(det==28 && hit.r>=920 && hit.r<=1060 && hit.vz<=-3875){
+    if(det==28 && hit.r>=930 && hit.r<=1070 && hit.vz<=-3875){
         R5_trid.push_back(hit.trid);
     }
     if(det==44 && hit.r<=40 && hit.vz<=-3875){
