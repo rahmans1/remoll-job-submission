@@ -22,6 +22,6 @@ int plotXY(TString filename, TString particle, TString cut){
     h->Draw("colz");
     h->SetDirectory(0);
   }
-  c->Print(filename+"/"+cut+"_"+particle);
+  c->Print(filename+"/"+cut+"_"+particle+".pdf");
   return 0;  
 }
