@@ -14,10 +14,10 @@ int plotXY(TString filename, TString particle, TString cut){
                                    {"Col6BMid", "11010.054-0.5"}, \
                                    {"Col6BExit", "11010.054+69.850+0.5"}  };
   
-  TCanvas *c=new TCanvas();
+  TCanvas *c=new TCanvas("c", "c", 1200, 1000);
   c->Divide(3,3);
   for (int i =0 ; i< det.size(); i++){
-    c[i]->cd(); 
+    c[i].cd(); 
     gPad->SetMargin(0.13,0.13,0.13,0.13);
     TH2D* h = (TH2D*) ((TDirectory*) f->Get(det[0]))->Get(det[0]+"_"+cut+"_xy_"+particle));
     h->Draw("colz");
