@@ -1,5 +1,4 @@
-int plotXY(TString filename, TString particle, TString cut){
-  
+int plotXY(TString filename, TString particle, TString cut){ 
   TFile *f = new TFile(filename+"/elastic.root");
   
   std::vector<TString> det{"MD", "Col4Ent", "Col4Exit", "Col6AEnt", "Col6AMid", "Col6AExit", "Col6BEnt", "Col6BMid", "Col6BExit"};
@@ -24,8 +23,5 @@ int plotXY(TString filename, TString particle, TString cut){
     h->SetDirectory(0);
   }
   c->Print(filename+"/"+cut+"_"+particle);
-    
-  }
-  
-return 0;  
+  return 0;  
 }
