@@ -19,7 +19,7 @@ int plotXY(TString filename, TString particle, TString cut){
   for (int i =0 ; i< det.size(); i++){
     c[i].cd(); 
     gPad->SetMargin(0.13,0.13,0.13,0.13);
-    TH2D* h = (TH2D*) ((TDirectory*) f->Get(det[0]))->Get(det[0]+"_"+cut+"_xy_"+particle));
+    TH2D* h = ((TH2D*) ((TDirectory*) f->Get(det[0])))->Get(det[0]+"_"+cut+"_xy_"+particle);
     h->Draw("colz");
     h->SetDirectory(0);
   }
