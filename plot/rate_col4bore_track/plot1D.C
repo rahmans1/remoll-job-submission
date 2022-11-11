@@ -14,7 +14,7 @@ THStack plot(TString detector, TString particle, TString cut, TString plottype){
     h.push_back((TH2D*) ((TDirectory*) f[i]->Get(detector))->Get(detector+"_"+cut+"_"+plottype+"_"+particle));
     h[i]->SetLineColor(i+1);
     h[i]->SetDirectory[0];
-    std::cout<< part.Data()<< " " h[i]->Integral*70/1e9 << std::endl;
+    std::cout<< part.Data()<< " " <<h[i]->Integral*70/1e9 << std::endl;
     hs.Add(h[i]);   
    }
   
@@ -41,7 +41,6 @@ int plot1D( TString particle, TString cut, TString plottype){
     gPad->SetMargin(0.13,0.13,0.13,0.13);
     THStack hs = plot(det[i],particle, cut, plottype);
     hs.Draw("HISTnostack");
-    hs.SetDirectory(0);
   }
 
  
