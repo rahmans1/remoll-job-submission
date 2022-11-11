@@ -40,8 +40,8 @@ int plot1D( TString particle, TString cut, TString plottype){
     c->cd(i+1);
     gPad->SetMargin(0.13,0.13,0.13,0.13);
     THStack hs = plot(det[i],particle, cut, plottype);
-    h->Draw("colz");
-    h->SetDirectory(0);
+    hs.Draw("HISTnostack");
+    hs.SetDirectory(0);
   }
 
  
