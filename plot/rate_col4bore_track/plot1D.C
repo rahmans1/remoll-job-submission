@@ -1,4 +1,4 @@
-THStack* plot(TString detector, TString particle, TString cut, TString plottype){
+THStack plot(TString detector, TString particle, TString cut, TString plottype){
   
    std::vector<TString> fname;
    fname.push_back("../../analysed_output/removeColl6AB/elastic.root");
