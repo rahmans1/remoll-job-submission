@@ -42,7 +42,7 @@ int plot1D( TString particle, TString cut, TString plottype){
     THStack hs = plot(det[i],particle, cut, plottype);
     hs.Draw("HISTnostack");
   }
-
+  c->cd(0);
   c->Print(particle+"_"+"_"+cut+"_"+plottype+".png")
 
 }
