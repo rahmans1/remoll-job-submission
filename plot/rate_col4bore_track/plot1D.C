@@ -43,6 +43,6 @@ int plot1D( TString particle, TString cut, TString plottype){
     hs.Draw("HISTnostack");
   }
 
- 
+  c->Print(particle+"_"+"_"+cut+"_"+plottype+".png")
 
 }
