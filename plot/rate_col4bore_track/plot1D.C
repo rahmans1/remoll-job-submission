@@ -1,4 +1,4 @@
-THStack plot(TString detector, TString particle, TString cut, TString plottype){
+THStack* plot(TString detector, TString particle, TString cut, TString plottype){
   
    std::vector<TString> fname;
    fname.push_back("../../analysed_output/removeColl6AB/elastic.root");
@@ -7,7 +7,7 @@ THStack plot(TString detector, TString particle, TString cut, TString plottype){
   
    std::vector<TFile*> f;
    std::vector<TH1D*> h;
-   THStack hs;
+   THStack* hs;
    for(int i=0; i<fname.size(); i++){
     TString part= fname[i]+"_"+detector+"_"+cut+"_xy_"+particle;
     f.push_back(new TFile(fname[i]));
@@ -15,7 +15,7 @@ THStack plot(TString detector, TString particle, TString cut, TString plottype){
     h[i]->SetLineColor(i+1);
     h[i]->SetDirectory(0);
     std::cout<< part.Data()<< " " << h[i]->Integral()*70/1e9 << std::endl;
-    hs.Add(h[i]);   
+    hs->Add(h[i]);   
    }
   
 
@@ -39,8 +39,8 @@ int plot1D( TString particle, TString cut, TString plottype){
   for (int i =0 ; i< det.size(); i++){
     c->cd(i+1);
     gPad->SetMargin(0.13,0.13,0.13,0.13);
-    THStack hs = plot(det[i],particle, cut, plottype);
-    hs.Draw("HISTnostack");
+    THStack* hs = plot(det[i],particle, cut, plottype);
+    hs->Draw("HISTnostack");
   }
   c->cd(0);
   c->Print(particle+"_"+"_"+cut+"_"+plottype+".png");
